@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 // CORS - allow both localhost (dev) and Vercel frontend (prod)
 const allowedOrigins = [
   "http://localhost:5173", // Vite default dev server
-  "https://skyrek-course-frontend.vercel.app" // replace with your Vercel URL
+  "https://beauty-cosmetics-ecommerce.vercel.app" // replace with your Vercel URL
 ];
 
 app.use(cors({
