@@ -18,7 +18,17 @@ dotenv.config()
 const app = express()
 
 app.use(bodyParser.json())
-app.use(cors())
+
+// CORS - allow both localhost (dev) and Vercel frontend (prod)
+const allowedOrigins = [
+  "http://localhost:5173", // Vite default dev server
+  "https://skyrek-course-frontend.vercel.app" // replace with your Vercel URL
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 app.use(
     (req,res,next)=>{
@@ -72,8 +82,6 @@ app.use("/api/reviews",reviewRouter)
 
 
 
-app.listen(5000,
-    ()=>{
-        console.log("server started")
-    }
-)
+// Dynamic port for local and Render
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
